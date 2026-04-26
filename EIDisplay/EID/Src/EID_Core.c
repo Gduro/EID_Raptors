@@ -36,7 +36,7 @@ void EID_Init(EID_Interface *eid) {
     EID_SendCmd(eid, 0x01);
     EID_SendData(eid, 0x27);
     EID_SendData(eid, 0x01);
-    EID_SendData(eid, 0x00);
+    EID_SendData(eid, 0x01);
     //Y- X+
     EID_SendCmd(eid, 0x11);
     EID_SendData(eid, 0x01);

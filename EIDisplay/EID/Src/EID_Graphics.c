@@ -13,9 +13,9 @@
  */
 void EID_AddImgToBuffer(uint16_t x_pos, uint16_t y_pos, const uint8_t *img,uint16_t img_w, uint16_t img_h)
 {
-	for(int i=0;i<4736;i++){
-		EID_Buffer[i]=0xFF;
-	}
+//	for(int i=0;i<4736;i++){
+//		EID_Buffer[i]=0xFF;
+//	}
 	uint16_t img_bytes_per_row = (img_w + 7) / 8;
 
 	    for(uint16_t y = 0; y < img_h; y++) {
@@ -67,17 +67,18 @@ const tImage *EID_GetChar(const tFont *font, char c)
 	}
 	return 0;
 };
-void EID_StrToChar(char str[])
+void EID_StrToChar(char str[], uint16_t x_start, uint16_t y_start)
 {
-	int len=0;
-	while(str[len]!='\0')
+	uint16_t current_x = x_start;
+	int i=0;
+	while(str[i]!='\0')
 	{
-		len++;
-	}
-	tImage *charList=malloc(len*sizeof(tImage));
-
-	for(int i=0;i<len; i++)
-	{
-		tImage * ptrChar=EID_GetChar(&Font, str[i]);
+		const tImage *img = EID_GetChar(&Font, str[i]);
+		if(img != NULL)
+		{
+			EID_AddImgToBuffer(current_x, y_start, img->data, img->width, img->height);
+			current_x+=img->width+2;
+		}
+		i++;
 	}
 }

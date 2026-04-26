@@ -108,9 +108,16 @@ int main(void)
   EID_Init(&myDisplay);
   EID_Clear(&myDisplay);
   // Wyczyść "stary" bank na biało (0xFF)
-  const tImage *test= EID_GetChar(&Font, 'x');
-//  EID_StrToChar("tst");
-  EID_AddImgToBuffer(0, 0, rap_logo, SCREEN_W, SCREEN_H);
+  const tImage *test= (const tImage *)EID_GetChar(&Font, 'x');
+//  if(test != NULL)
+//  {
+//	  EID_AddImgToBuffer(0, 0, test->data, test->width, test->height);
+//
+//  }
+  	for(int i=0;i<4736;i++){
+  		EID_Buffer[i]=0xFF;
+  	}
+  EID_StrToChar("Grzegorz Chrabelski - student TUL", 0, 0);
   EID_DrawBitmap(&myDisplay);
 //  EID_DrawBitmap(&myDisplay, heart);
   // Wpisz do "nowego" banku czarny (0x00)
