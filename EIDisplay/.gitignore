@@ -1,0 +1,13 @@
+/Debug/
+/Release/
+# Pliki binarne
+*.elf
+*.bin
+*.hex
+*.map
+*.list
+
+# Ustawienia lokalne IDE (nieobowiązkowe, ale zalecane)
+.settings/
+.launches/
+Drivers/
